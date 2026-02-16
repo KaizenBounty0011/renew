@@ -5,6 +5,7 @@
                 <div class="footer-grid">
                     <div class="footer-col footer-about">
                         <a href="<?= SITE_URL ?>" class="footer-logo">
+                            <img src="<?= SITE_URL ?>/assets/images/logo.png" alt="Renew Empire Logo" class="logo-img">
                             <span class="logo-renew">RENEW</span><span class="logo-empire">EMPIRE</span>
                         </a>
                         <p>A diversified conglomerate leading innovation across Fight Championship, Entertainment, Hotels, and Energy sectors across Africa.</p>
@@ -20,7 +21,7 @@
                         <h4>Quick Links</h4>
                         <ul>
                             <li><a href="<?= SITE_URL ?>/about.php">About Us</a></li>
-                            <li><a href="<?= SITE_URL ?>/businesses.php">Our Businesses</a></li>
+                            <li><a href="<?= SITE_URL ?>/about.php">About Us</a></li>
                             <li><a href="<?= SITE_URL ?>/news.php">News & Press</a></li>
                             <li><a href="<?= SITE_URL ?>/careers.php">Careers</a></li>
                             <li><a href="<?= SITE_URL ?>/contact.php">Contact Us</a></li>

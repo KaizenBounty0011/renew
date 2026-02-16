@@ -290,12 +290,9 @@ CREATE TABLE IF NOT EXISTS page_content (
 -- SAMPLE DATA
 -- ============================================================
 
--- Admin (password: admin123)
+-- Admin (password: password)
 INSERT INTO admins (username, email, password, full_name, role) VALUES
-('admin', 'admin@renewempire.com', '$2y$10$8KzQyR5Xk5X5X5X5X5X5XeNqJ9X5X5X5X5X5X5X5X5X5X5X5X5', 'System Administrator', 'super_admin');
-
--- We'll update the password with a proper hash
-UPDATE admins SET password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi' WHERE username = 'admin';
+('admin', 'admin@renewempire.com', '$2y$10$6.E5BLb3UENWnZC3/lrlvuP3xSIIanIIQyesJlbHK6cP7GzQYUJ1O', 'System Administrator', 'super_admin');
 
 -- Site Settings
 INSERT INTO site_settings (setting_key, setting_value, category) VALUES
@@ -310,7 +307,8 @@ INSERT INTO site_settings (setting_key, setting_value, category) VALUES
 ('linkedin', 'https://linkedin.com/company/renewempire', 'social'),
 ('youtube', 'https://youtube.com/renewempire', 'social'),
 ('footer_text', '© 2026 Renew Empire. All Rights Reserved.', 'general'),
-('meta_description', 'Renew Empire - A diversified corporate group leading innovation across Fight Championship, Entertainment, Hotels, and Energy sectors.', 'seo');
+('meta_description', 'Renew Empire - A diversified corporate group leading innovation across Fight Championship, Entertainment, Hotels, and Energy sectors.', 'seo'),
+('admin_security_key', 'RE-2026-SECURE', 'system');
 
 -- Divisions
 INSERT INTO divisions (division_name, slug, tagline, description, hero_image1, hero_image2, hero_image3, content, accent_color) VALUES

@@ -1,11 +1,22 @@
 <?php
 /**
  * Renew Empire - Configuration
+ *
+ * For production: set ENVIRONMENT to 'production',
+ * update DB credentials and SITE_URL.
  */
 
-// Error reporting (disable in production)
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// Environment: 'development' or 'production'
+define('ENVIRONMENT', 'development');
+
+if (ENVIRONMENT === 'production') {
+    error_reporting(0);
+    ini_set('display_errors', 0);
+    ini_set('log_errors', 1);
+} else {
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+}
 
 // Database configuration
 define('DB_HOST', 'localhost');
@@ -13,13 +24,19 @@ define('DB_NAME', 'renew_empire');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 
-// Site configuration
+// Site configuration — update for production domain
 define('SITE_URL', 'http://localhost/renew');
 define('SITE_NAME', 'Renew Empire');
 define('UPLOAD_DIR', __DIR__ . '/uploads/');
+define('MAX_UPLOAD_SIZE', 5 * 1024 * 1024); // 5MB
 
 // Session configuration
 if (session_status() === PHP_SESSION_NONE) {
+    if (ENVIRONMENT === 'production') {
+        ini_set('session.cookie_httponly', 1);
+        ini_set('session.cookie_secure', 1);
+        ini_set('session.use_strict_mode', 1);
+    }
     session_start();
 }
 

@@ -32,8 +32,14 @@ $adminPage = basename($_SERVER['PHP_SELF'], '.php');
                 <a href="<?= SITE_URL ?>/admin/admin-careers.php" class="<?= $adminPage === 'admin-careers' ? 'active' : '' ?>">
                     <i class="fas fa-briefcase"></i> Careers
                 </a>
+                <a href="<?= SITE_URL ?>/admin/admin-applications.php" class="<?= $adminPage === 'admin-applications' ? 'active' : '' ?>">
+                    <i class="fas fa-file-alt"></i> Applications
+                </a>
                 <a href="<?= SITE_URL ?>/admin/admin-divisions.php" class="<?= $adminPage === 'admin-divisions' ? 'active' : '' ?>">
                     <i class="fas fa-layer-group"></i> Divisions
+                </a>
+                <a href="<?= SITE_URL ?>/admin/admin-events.php" class="<?= $adminPage === 'admin-events' ? 'active' : '' ?>">
+                    <i class="fas fa-calendar-alt"></i> Events & Shows
                 </a>
                 <div class="sidebar-section">Bookings</div>
                 <a href="<?= SITE_URL ?>/admin/admin-bookings.php" class="<?= $adminPage === 'admin-bookings' ? 'active' : '' ?>">

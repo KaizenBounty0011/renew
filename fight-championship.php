@@ -8,7 +8,7 @@ $stmt->execute();
 $division = $stmt->fetch();
 
 if (!$division) {
-    header('Location: ' . SITE_URL . '/businesses.php');
+    header('Location: ' . SITE_URL . '/about.php');
     exit;
 }
 
@@ -49,18 +49,11 @@ require_once 'includes/header.php';
     <!-- Division Description -->
     <section class="section">
         <div class="container">
-            <div class="division-about">
-                <div class="content">
-                    <span class="overline" style="color: <?= $division['accent_color'] ?>;"><?= sanitize($division['tagline']) ?></span>
-                    <h2><?= sanitize($division['division_name']) ?></h2>
-                    <p><?= $division['description'] ?></p>
-                    <?= $division['content'] ?>
-                </div>
-                <div>
-                    <div class="about-image" style="background: <?= $division['accent_color'] ?>20;">
-                        <i class="fas fa-fist-raised" style="color: <?= $division['accent_color'] ?>;"></i>
-                    </div>
-                </div>
+            <div class="division-about-centered">
+                <span class="overline" style="color: <?= $division['accent_color'] ?>;"><?= sanitize($division['tagline']) ?></span>
+                <h2><?= sanitize($division['division_name']) ?></h2>
+                <p><?= $division['description'] ?></p>
+                <?= $division['content'] ?>
             </div>
         </div>
     </section>

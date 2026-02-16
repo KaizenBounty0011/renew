@@ -8,7 +8,7 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<?= getSetting('meta_description') ?>">
-    <meta name="theme-color" content="#1a1a2e">
+    <meta name="theme-color" content="#0a0a0a">
     <meta property="og:title" content="<?= $pageTitle ?? SITE_NAME ?>">
     <meta property="og:description" content="<?= getSetting('meta_description') ?>">
     <meta property="og:type" content="website">
@@ -43,7 +43,7 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
     <nav class="navbar" id="navbar">
         <div class="container">
             <a href="<?= SITE_URL ?>" class="logo">
-                <span class="logo-renew">RENEW</span><span class="logo-empire">EMPIRE</span>
+                <img src="<?= SITE_URL ?>/assets/images/logo.png" alt="Renew Empire Logo" class="logo-img">
             </a>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
@@ -52,7 +52,7 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
                 <li><a href="<?= SITE_URL ?>/index.php" class="<?= $currentPage === 'index' ? 'active' : '' ?>">Home</a></li>
                 <li><a href="<?= SITE_URL ?>/about.php" class="<?= $currentPage === 'about' ? 'active' : '' ?>">About</a></li>
                 <li class="dropdown">
-                    <a href="<?= SITE_URL ?>/businesses.php" class="<?= in_array($currentPage, ['businesses','fight-championship','entertainment','hotels','energy']) ? 'active' : '' ?>">
+                    <a href="#" class="<?= in_array($currentPage, ['fight-championship','entertainment','hotels','energy']) ? 'active' : '' ?>">
                         Businesses <i class="fas fa-chevron-down"></i>
                     </a>
                     <ul class="dropdown-menu">

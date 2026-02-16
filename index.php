@@ -17,18 +17,29 @@ $careerCount = $pdo->query("SELECT COUNT(*) FROM careers WHERE status = 'open'")
 require_once 'includes/header.php';
 ?>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Hero Section with Slider -->
+    <section class="hero hero-slider">
+        <div class="hero-slides">
+            <div class="hero-slide active" style="background-image: url('<?= SITE_URL ?>/assets/images/hero1.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('<?= SITE_URL ?>/assets/images/hero2.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('<?= SITE_URL ?>/assets/images/hero3.jpg');"></div>
+        </div>
+        <div class="hero-overlay"></div>
         <div class="container">
             <div class="hero-content">
                 <span class="hero-badge">Africa's Leading Conglomerate</span>
                 <h1>Building <span>Tomorrow</span>, Today</h1>
                 <p>Renew Empire is a diversified corporate group driving innovation and excellence across Fight Championship, Entertainment, Hotels, and Energy sectors.</p>
                 <div class="hero-buttons">
-                    <a href="<?= SITE_URL ?>/businesses.php" class="btn btn-primary">Explore Our Businesses <i class="fas fa-arrow-right"></i></a>
+                    <a href="<?= SITE_URL ?>/about.php" class="btn btn-primary">Explore Our Businesses <i class="fas fa-arrow-right"></i></a>
                     <a href="<?= SITE_URL ?>/about.php" class="btn btn-outline">Learn More</a>
                 </div>
             </div>
+        </div>
+        <div class="hero-dots">
+            <span class="hero-dot active" data-slide="0"></span>
+            <span class="hero-dot" data-slide="1"></span>
+            <span class="hero-dot" data-slide="2"></span>
         </div>
     </section>
 
@@ -101,7 +112,7 @@ require_once 'includes/header.php';
                     <a href="<?= SITE_URL ?>/about.php" class="btn btn-primary" style="margin-top: 15px;">Read Our Story <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="about-image">
-                    <i class="fas fa-crown"></i>
+                    <img src="<?= SITE_URL ?>/assets/images/founder1.jpeg" alt="Founder - Renew Empire" style="width:100%; height:100%; object-fit:cover;">
                 </div>
             </div>
         </div>
@@ -151,4 +162,36 @@ require_once 'includes/header.php';
         </div>
     </section>
 
-<?php require_once 'includes/footer.php'; ?>
+<?php
+$extraJS = '<script>
+(function(){
+    const slides = document.querySelectorAll(".hero-slide");
+    const dots = document.querySelectorAll(".hero-dot");
+    let current = 0;
+    let interval;
+
+    function goTo(n) {
+        slides[current].classList.remove("active");
+        dots[current].classList.remove("active");
+        current = (n + slides.length) % slides.length;
+        slides[current].classList.add("active");
+        dots[current].classList.add("active");
+    }
+
+    function startAuto() {
+        interval = setInterval(function(){ goTo(current + 1); }, 5000);
+    }
+
+    dots.forEach(function(dot){
+        dot.addEventListener("click", function(){
+            clearInterval(interval);
+            goTo(parseInt(this.dataset.slide));
+            startAuto();
+        });
+    });
+
+    startAuto();
+})();
+</script>';
+require_once 'includes/footer.php';
+?>

@@ -41,7 +41,7 @@ require_once 'includes/header.php';
                     <?= $storyContent ?>
                 </div>
                 <div class="about-image">
-                    <i class="fas fa-landmark"></i>
+                    <img src="<?= SITE_URL ?>/assets/images/founder1.jpeg" alt="Founder - Renew Empire" style="width:100%; height:100%; object-fit:cover;">
                 </div>
             </div>
         </div>
@@ -99,37 +99,39 @@ require_once 'includes/header.php';
         </div>
     </section>
 
-    <!-- Group Structure -->
+    <!-- Our Business Divisions (merged from businesses.php) -->
     <section class="section">
         <div class="container">
             <div class="section-header">
-                <span class="overline">Group Structure</span>
-                <h2>Our Business Divisions</h2>
-                <p>Four specialized divisions united under one corporate vision.</p>
+                <span class="overline">Our Businesses</span>
+                <h2>Four Divisions, One Empire</h2>
+                <p>Four world-class divisions driving innovation across Africa.</p>
             </div>
-            <div class="divisions-grid" style="grid-template-columns: repeat(2, 1fr);">
-                <?php
-                $icons = ['fas fa-fist-raised', 'fas fa-music', 'fas fa-hotel', 'fas fa-bolt'];
-                $links = ['fight-championship', 'entertainment', 'hotels', 'energy'];
-                foreach ($divisions as $i => $div):
-                ?>
-                <div class="division-card" style="border-left: 4px solid <?= $div['accent_color'] ?>;">
-                    <div class="division-card-body">
-                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
-                            <div class="division-card-icon" style="background: <?= $div['accent_color'] ?>; position: static; width: 45px; height: 45px;">
-                                <i class="<?= $icons[$i] ?>"></i>
-                            </div>
-                            <h3 style="margin: 0;"><?= sanitize($div['division_name']) ?></h3>
-                        </div>
-                        <p style="margin-bottom: 10px;"><strong><?= sanitize($div['tagline']) ?></strong></p>
-                        <p><?= truncateText($div['description'], 200) ?></p>
-                        <a href="<?= SITE_URL ?>/<?= $links[$i] ?>.php" class="division-card-link" style="color: <?= $div['accent_color'] ?>;">
-                            Learn More <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
+
+            <?php
+            $links = ['fight-championship', 'entertainment', 'hotels', 'energy'];
+            foreach ($divisions as $i => $div):
+                $isReversed = $i % 2 !== 0;
+            ?>
+            <div class="division-about-row <?= $isReversed ? 'reversed' : '' ?>" style="margin-bottom: 60px;">
+                <div class="division-about-img">
+                    <img src="<?= SITE_URL ?>/<?= $div['hero_image1'] ?>" alt="<?= sanitize($div['division_name']) ?>" style="width:100%; height:100%; object-fit:cover; border-radius: var(--radius-lg);">
                 </div>
-                <?php endforeach; ?>
+                <div class="division-about-text">
+                    <span class="overline" style="color: <?= $div['accent_color'] ?>;"><?= sanitize($div['tagline']) ?></span>
+                    <h3><?= sanitize($div['division_name']) ?></h3>
+                    <p><?= truncateText($div['description'], 250) ?></p>
+                    <?php if (!empty($div['content'])): ?>
+                    <div style="margin-top: 10px; color: var(--text-light); font-size: 0.95rem; line-height: 1.7;">
+                        <?= truncateText(strip_tags($div['content']), 200) ?>
+                    </div>
+                    <?php endif; ?>
+                    <a href="<?= SITE_URL ?>/<?= $links[$i] ?>.php" class="btn btn-sm" style="background: <?= $div['accent_color'] ?>; color: #fff; margin-top: 20px;">
+                        Explore <?= sanitize($div['division_name']) ?> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
+            <?php endforeach; ?>
         </div>
     </section>
 

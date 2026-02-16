@@ -15,14 +15,26 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Mobile dropdown toggle
+    // Dropdown toggle on click (works on both desktop and mobile/touch)
     document.querySelectorAll('.dropdown > a').forEach(function(link) {
         link.addEventListener('click', function(e) {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                this.parentElement.classList.toggle('active');
-            }
+            e.preventDefault();
+            var parent = this.parentElement;
+            // Close other dropdowns
+            document.querySelectorAll('.dropdown').forEach(function(d) {
+                if (d !== parent) d.classList.remove('active');
+            });
+            parent.classList.toggle('active');
         });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.dropdown')) {
+            document.querySelectorAll('.dropdown').forEach(function(d) {
+                d.classList.remove('active');
+            });
+        }
     });
 
     // Close nav on link click (mobile)
@@ -167,7 +179,7 @@ function showFieldError(field, message) {
     field.classList.add('error');
     const error = document.createElement('div');
     error.className = 'field-error';
-    error.style.cssText = 'color:#e63946;font-size:0.8rem;margin-top:4px;';
+    error.style.cssText = 'color:#fa050f;font-size:0.8rem;margin-top:4px;';
     error.textContent = message;
     field.parentElement.appendChild(error);
 }
